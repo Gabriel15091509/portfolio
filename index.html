@@ -1004,20 +1004,20 @@
     <!-- work project section ends -->
 
     <!-- experience section starts -->
-    <section class="experience" id="experience">
-      <h2 class="heading"><i class="fas fa-briefcase"></i> Expérience</h2>
+    <section class="exp-section" id="exp-professional">
+      <h2 class="exp-heading"><i class="fas fa-briefcase"></i> Expérience</h2>
 
-      <div class="timeline">
+      <div class="exp-timeline">
         <!-- Stage Origami Tech -->
-        <div class="container right">
-          <div class="content">
-            <div class="tag">
+        <div class="exp-timeline-item exp-item-right">
+          <div class="exp-content">
+            <div class="exp-company-tag">
               <h2>Origami Tech</h2>
             </div>
-            <div class="desc">
+            <div class="exp-description">
               <h3>Développeur Mobile | Stage</h3>
               <p>Projet : Application AXDE</p>
-              <ul class="experience-list">
+              <ul class="exp-achievements-list">
                 <li>
                   Conception et réalisation d'une application mobile de gestion
                   des offres d'emploi
@@ -1029,15 +1029,15 @@
         </div>
 
         <!-- Stage World Business Solution -->
-        <div class="container left">
-          <div class="content">
-            <div class="tag">
+        <div class="exp-timeline-item exp-item-left">
+          <div class="exp-content">
+            <div class="exp-company-tag">
               <h2>World Business Solution</h2>
             </div>
-            <div class="desc">
+            <div class="exp-description">
               <h3>Développeur Full Stack | Stage</h3>
               <p>Projet : Système de gestion logistique</p>
-              <ul class="experience-list">
+              <ul class="exp-achievements-list">
                 <li>Développement d'une solution de gestion logistique</li>
                 <li>Technologies : Node.js, Express, React.js</li>
               </ul>
@@ -1046,16 +1046,16 @@
         </div>
 
         <!-- Projets ENI -->
-        <div class="container right">
-          <div class="content">
-            <div class="tag">
-              <h2>Ecole Nationale d'Informatique</h2>
+        <div class="exp-timeline-item exp-item-right">
+          <div class="exp-content">
+            <div class="exp-company-tag">
+              <h2>École Nationale d'Informatique</h2>
             </div>
-            <div class="desc">
+            <div class="exp-description">
               <h3>Projets Académiques</h3>
 
               <h4>2024 (Licence 3)</h4>
-              <ul class="experience-list">
+              <ul class="exp-achievements-list">
                 <li>Système de gestion de vente (Node.js, Express, React)</li>
                 <li>Gestion de cité universitaire (Node.js, Express, React)</li>
                 <li>
@@ -1064,7 +1064,7 @@
               </ul>
 
               <h4>2025 (Master 1)</h4>
-              <ul class="experience-list">
+              <ul class="exp-achievements-list">
                 <li>Application de recherche opérationnelle (Python Flask)</li>
               </ul>
             </div>
@@ -1072,13 +1072,504 @@
         </div>
       </div>
 
-      <div class="morebtn">
-        <a href="/experience" class="btn"
-          ><span>Voir Plus</span>
+      <div class="exp-more-button">
+        <a href="/experience" class="exp-btn">
+          <span>Voir Plus</span>
           <i class="fas fa-arrow-right"></i>
         </a>
       </div>
     </section>
+
+    <style>
+      .exp-section {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 60px 0;
+        position: relative;
+      }
+
+      .exp-heading {
+        text-align: center;
+        color: #fff;
+        font-size: 3rem;
+        margin-bottom: 60px;
+        text-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        position: relative;
+        overflow: hidden;
+      }
+
+      .exp-heading::after {
+        content: "";
+        position: absolute;
+        bottom: -10px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 100px;
+        height: 4px;
+        background: linear-gradient(90deg, #ff6b6b, #4ecdc4);
+        border-radius: 2px;
+        animation: exp-pulse 2s infinite;
+      }
+
+      @keyframes exp-pulse {
+        0%,
+        100% {
+          transform: translateX(-50%) scale(1);
+        }
+        50% {
+          transform: translateX(-50%) scale(1.1);
+        }
+      }
+
+      .exp-heading i {
+        margin-right: 15px;
+        color: #4ecdc4;
+        animation: exp-bounce 2s infinite;
+      }
+
+      @keyframes exp-bounce {
+        0%,
+        20%,
+        50%,
+        80%,
+        100% {
+          transform: translateY(0);
+        }
+        40% {
+          transform: translateY(-10px);
+        }
+        60% {
+          transform: translateY(-5px);
+        }
+      }
+
+      .exp-timeline {
+        position: relative;
+        max-width: 1000px;
+        margin: 0 auto;
+      }
+
+      .exp-timeline::after {
+        content: "";
+        position: absolute;
+        width: 6px;
+        background: linear-gradient(45deg, #ff6b6b, #4ecdc4, #45b7d1);
+        top: 0;
+        bottom: 0;
+        left: 50%;
+        margin-left: -3px;
+        border-radius: 3px;
+        box-shadow: 0 0 20px rgba(78, 205, 196, 0.5);
+        animation: exp-line-glow 3s ease-in-out infinite alternate;
+      }
+
+      @keyframes exp-line-glow {
+        from {
+          box-shadow: 0 0 20px rgba(78, 205, 196, 0.5);
+        }
+        to {
+          box-shadow: 0 0 30px rgba(255, 107, 107, 0.8);
+        }
+      }
+
+      .exp-timeline-item {
+        padding: 10px 50px;
+        position: relative;
+        background-color: inherit;
+        width: 50%;
+        opacity: 0;
+        transform: translateY(50px);
+        animation: exp-fade-in-up 0.8s ease-out forwards;
+      }
+
+      .exp-timeline-item:nth-child(1) {
+        animation-delay: 0.2s;
+      }
+      .exp-timeline-item:nth-child(2) {
+        animation-delay: 0.4s;
+      }
+      .exp-timeline-item:nth-child(3) {
+        animation-delay: 0.6s;
+      }
+
+      @keyframes exp-fade-in-up {
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .exp-timeline-item::after {
+        content: "";
+        position: absolute;
+        width: 25px;
+        height: 25px;
+        right: -17px;
+        background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+        border: 4px solid #fff;
+        top: 15px;
+        border-radius: 50%;
+        z-index: 1;
+        box-shadow: 0 0 20px rgba(78, 205, 196, 0.6);
+        animation: exp-dot-pulse 2s infinite;
+      }
+
+      @keyframes exp-dot-pulse {
+        0% {
+          transform: scale(1);
+        }
+        50% {
+          transform: scale(1.2);
+        }
+        100% {
+          transform: scale(1);
+        }
+      }
+
+      .exp-item-left {
+        left: 0;
+      }
+
+      .exp-item-right {
+        left: 50%;
+      }
+
+      .exp-item-right::after {
+        left: -16px;
+      }
+
+      .exp-content {
+        padding: 0;
+        background: rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        border-radius: 20px;
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        transition: all 0.3s ease;
+        overflow: hidden;
+        position: relative;
+      }
+
+      .exp-content::before {
+        content: "";
+        position: absolute;
+        top: -2px;
+        left: -2px;
+        right: -2px;
+        bottom: -2px;
+        background: linear-gradient(45deg, #ff6b6b, #4ecdc4, #45b7d1, #96ceb4);
+        border-radius: 22px;
+        z-index: -1;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+      }
+
+      .exp-content:hover::before {
+        opacity: 1;
+        animation: exp-border-glow 2s linear infinite;
+      }
+
+      @keyframes exp-border-glow {
+        0% {
+          background-position: 0% 50%;
+        }
+        50% {
+          background-position: 100% 50%;
+        }
+        100% {
+          background-position: 0% 50%;
+        }
+      }
+
+      .exp-content:hover {
+        transform: translateY(-10px) scale(1.02);
+        box-shadow: 0 30px 60px rgba(0, 0, 0, 0.2);
+      }
+
+      .exp-company-tag {
+        background: linear-gradient(135deg, #ff6b6b, #4ecdc4);
+        color: white;
+        padding: 20px 30px;
+        margin: 0;
+        border-radius: 20px 20px 0 0;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .exp-company-tag::before {
+        content: "";
+        position: absolute;
+        top: -50%;
+        left: -50%;
+        width: 200%;
+        height: 200%;
+        background: linear-gradient(
+          45deg,
+          transparent,
+          rgba(255, 255, 255, 0.1),
+          transparent
+        );
+        transform: rotate(45deg);
+        transition: all 0.6s ease;
+      }
+
+      .exp-content:hover .exp-company-tag::before {
+        animation: exp-shimmer 1.5s ease-in-out;
+      }
+
+      @keyframes exp-shimmer {
+        0% {
+          transform: translateX(-100%) translateY(-100%) rotate(45deg);
+        }
+        100% {
+          transform: translateX(100%) translateY(100%) rotate(45deg);
+        }
+      }
+
+      .exp-company-tag h2 {
+        font-size: 1.5rem;
+        margin: 0;
+        font-weight: 700;
+        text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+      }
+
+      .exp-description {
+        padding: 30px;
+        color: white;
+        background: rgba(255, 255, 255, 0.05);
+      }
+
+      .exp-description h3 {
+        font-size: 1.3rem;
+        margin-bottom: 15px;
+        color: #4ecdc4;
+        font-weight: 600;
+      }
+
+      .exp-description h4 {
+        font-size: 1.1rem;
+        margin: 20px 0 10px 0;
+        color: #ff6b6b;
+        font-weight: 600;
+      }
+
+      .exp-description p {
+        margin-bottom: 15px;
+        font-size: 1.1rem;
+        opacity: 0.9;
+        font-weight: 500;
+      }
+
+      .exp-achievements-list {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+      }
+
+      .exp-achievements-list li {
+        margin-bottom: 12px;
+        padding-left: 30px;
+        position: relative;
+        font-size: 1rem;
+        line-height: 1.6;
+        opacity: 0.9;
+        transition: all 0.3s ease;
+      }
+
+      .exp-achievements-list li:hover {
+        opacity: 1;
+        transform: translateX(5px);
+      }
+
+      .exp-achievements-list li::before {
+        content: "▶";
+        position: absolute;
+        left: 0;
+        color: #4ecdc4;
+        font-weight: bold;
+        transition: all 0.3s ease;
+      }
+
+      .exp-achievements-list li:hover::before {
+        color: #ff6b6b;
+        transform: scale(1.2);
+      }
+
+      .exp-more-button {
+        text-align: center;
+        margin-top: 60px;
+        animation: exp-fade-in 1s ease-out 0.8s both;
+      }
+
+      @keyframes exp-fade-in {
+        from {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .exp-btn {
+        display: inline-flex;
+        align-items: center;
+        padding: 15px 30px;
+        background: linear-gradient(135deg, #ff6b6b, #4ecdc4);
+        color: white;
+        text-decoration: none;
+        border-radius: 50px;
+        font-weight: 600;
+        font-size: 1.1rem;
+        transition: all 0.3s ease;
+        position: relative;
+        overflow: hidden;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+      }
+
+      .exp-btn::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          rgba(255, 255, 255, 0.2),
+          transparent
+        );
+        transition: left 0.6s ease;
+      }
+
+      .exp-btn:hover::before {
+        left: 100%;
+      }
+
+      .exp-btn:hover {
+        transform: translateY(-3px) scale(1.05);
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+      }
+
+      .exp-btn span {
+        margin-right: 10px;
+      }
+
+      .exp-btn i {
+        transition: transform 0.3s ease;
+      }
+
+      .exp-btn:hover i {
+        transform: translateX(5px);
+      }
+
+      /* Responsive Design */
+      @media screen and (max-width: 768px) {
+        .exp-timeline::after {
+          left: 31px;
+        }
+
+        .exp-timeline-item {
+          width: 100%;
+          padding-left: 80px;
+          padding-right: 25px;
+        }
+
+        .exp-timeline-item::after {
+          left: 15px;
+        }
+
+        .exp-item-left::after,
+        .exp-item-right::after {
+          left: 15px;
+        }
+
+        .exp-item-right {
+          left: 0%;
+        }
+
+        .exp-heading {
+          font-size: 2.5rem;
+        }
+      }
+
+      /* Effet de particules en arrière-plan */
+      .exp-section::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-image: radial-gradient(
+            circle at 20% 80%,
+            rgba(78, 205, 196, 0.3) 0%,
+            transparent 50%
+          ),
+          radial-gradient(
+            circle at 80% 20%,
+            rgba(255, 107, 107, 0.3) 0%,
+            transparent 50%
+          ),
+          radial-gradient(
+            circle at 40% 40%,
+            rgba(69, 183, 209, 0.3) 0%,
+            transparent 50%
+          );
+        animation: exp-float-particles 15s ease-in-out infinite;
+        pointer-events: none;
+      }
+
+      @keyframes exp-float-particles {
+        0%,
+        100% {
+          transform: translateY(0) rotate(0deg);
+        }
+        33% {
+          transform: translateY(-20px) rotate(120deg);
+        }
+        66% {
+          transform: translateY(20px) rotate(240deg);
+        }
+      }
+    </style>
+
+    <script>
+      // Animation d'apparition au scroll
+      const expObserverOptions = {
+        threshold: 0.1,
+        rootMargin: "0px 0px -50px 0px",
+      };
+
+      const expObserver = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.style.animationPlayState = "running";
+          }
+        });
+      }, expObserverOptions);
+
+      document.querySelectorAll(".exp-timeline-item").forEach((item) => {
+        expObserver.observe(item);
+      });
+
+      // Effet de parallaxe subtil
+      document.addEventListener("mousemove", (e) => {
+        const expContainers = document.querySelectorAll(".exp-content");
+        const mouseX = e.clientX / window.innerWidth;
+        const mouseY = e.clientY / window.innerHeight;
+
+        expContainers.forEach((container) => {
+          const speed = 2;
+          const x = (mouseX - 0.5) * speed;
+          const y = (mouseY - 0.5) * speed;
+
+          container.style.transform += ` translate3d(${x}px, ${y}px, 0)`;
+        });
+      });
+    </script>
     <!-- experience section ends -->
 
     <!-- contact section starts -->

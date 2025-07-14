@@ -761,102 +761,216 @@ header .navbar ul li a:hover {
 /* work section ends */
 
 /* experience section starts */
+/* :root {
+  --timeline-primary-color: #020133;
+  --timeline-accent-color: #f68c09;
+  --timeline-secondary-color: #ff9f55;
+  --timeline-background: #ffffff;
+  --timeline-text-color: #02094b;
+  --timeline-width: 6px;
+  --timeline-max-width: 1200px;
+  --circle-size: 25px;
+  --circle-border-width: 4px;
+  --container-padding: 10px 40px;
+  --content-border-radius: 6px;
+  --arrow-size: 10px;
+}
+
+/* Container principal de la timeline */
 .experience .timeline {
   position: relative;
-  max-width: 1200px;
+  max-width: var(--timeline-max-width);
   margin: 0 auto;
 }
+
+/* Ligne centrale de la timeline */
 .experience .timeline::after {
   content: "";
   position: absolute;
-  width: 6px;
-  background: #020133;
+  width: var(--timeline-width);
+  background: var(--timeline-primary-color);
   top: 0;
   bottom: 0;
   left: 50%;
-  margin-left: -3px;
+  margin-left: calc(var(--timeline-width) / -2);
   z-index: -2;
 }
+
+/* Conteneur d'éléments de timeline */
 .experience .container {
-  padding: 10px 40px;
+  padding: var(--container-padding);
   position: relative;
   background-color: inherit;
   width: 50%;
 }
-/*circles on timeline*/
+
+/* Cercles sur la timeline avec amélioration de l'accessibilité */
 .experience .container::after {
   content: "\f0b1";
   position: absolute;
-  width: 25px;
-  height: 25px;
-  right: -17px;
-  background-color: rgb(255, 255, 255);
-  border: 4px solid #ff9f55;
+  width: var(--circle-size);
+  height: var(--circle-size);
+  right: calc((var(--circle-size) + var(--circle-border-width)) / -2);
+  background-color: var(--timeline-background);
+  border: var(--circle-border-width) solid var(--timeline-secondary-color);
   top: 15px;
   border-radius: 50%;
   z-index: 100;
   font-size: 1.89rem;
   text-align: center;
   font-weight: 600;
-  color: #02094b;
-  font-family: "Font Awesome\ 5 Free";
+  color: var(--timeline-text-color);
+  font-family: "Font Awesome 5 Free";
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
+
+/* Positionnement des éléments */
 .experience .left {
   left: 0;
 }
+
 .experience .right {
   left: 50%;
 }
-/* arrows pointing right */
+
+/* Flèches pointant vers la droite */
 .experience .left::before {
-  content: " ";
-  height: 0;
+  content: "";
   position: absolute;
   top: 22px;
-  width: 0;
-  z-index: 1;
   right: 30px;
-  border: medium solid #f68c09;
-  border-width: 10px 0 10px 10px;
-  border-color: transparent transparent transparent #f68c09;
-}
-/* arrows pointing left  */
-.experience .right::before {
-  content: " ";
+  width: 0;
   height: 0;
+  border-style: solid;
+  border-width: var(--arrow-size) 0 var(--arrow-size) var(--arrow-size);
+  border-color: transparent transparent transparent var(--timeline-accent-color);
+  z-index: 1;
+}
+
+/* Flèches pointant vers la gauche */
+.experience .right::before {
+  content: "";
   position: absolute;
   top: 22px;
-  width: 0;
-  z-index: 1;
   left: 30px;
-  border: medium solid #f68c09;
-  border-width: 10px 10px 10px 0;
-  border-color: transparent #f68c09 transparent transparent;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: var(--arrow-size) var(--arrow-size) var(--arrow-size) 0;
+  border-color: transparent var(--timeline-accent-color) transparent transparent;
+  z-index: 1;
 }
+
+/* Ajustement du cercle pour les éléments à droite */
 .experience .right::after {
-  left: -16px;
+  left: calc((var(--circle-size) + var(--circle-border-width)) / -2);
 }
+
+/* Contenu des éléments de timeline */
 .experience .content {
-  background-color: #f68c09;
+  background-color: var(--timeline-accent-color);
   position: relative;
-  border-radius: 6px;
+  border-radius: var(--content-border-radius);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
+
+/* Effet hover pour améliorer l'interactivité */
+.experience .content:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* Tag dans le contenu */
 .experience .content .tag {
   font-size: 1.3rem;
-  padding-top: 1.5rem;
-  padding-left: 1.5rem;
+  padding: 1.5rem 1.5rem 0;
+  font-weight: 500;
+  color: var(--timeline-background);
 }
+
+/* Description dans le contenu */
 .experience .content .desc {
-  margin-left: 1.5rem;
-  padding-bottom: 1rem;
+  padding: 0 1.5rem 1rem;
 }
+
 .experience .content .desc h3 {
   font-size: 1.5rem;
   font-weight: 600;
+  margin: 0 0 0.5rem 0;
+  color: var(--timeline-background);
 }
+
 .experience .content .desc p {
   font-size: 1.2rem;
+  line-height: 1.6;
+  margin: 0;
+  color: var(--timeline-background);
 }
+
+/* Responsive design pour tablettes */
+@media screen and (max-width: 768px) {
+  .experience .timeline::after {
+    left: 31px;
+  }
+
+  .experience .container {
+    width: 100%;
+    padding-left: 70px;
+    padding-right: 25px;
+  }
+
+  .experience .container::after {
+    left: 15px;
+  }
+
+  .experience .left::before,
+  .experience .right::before {
+    left: 60px;
+    border-width: var(--arrow-size) var(--arrow-size) var(--arrow-size) 0;
+    border-color: transparent var(--timeline-accent-color) transparent
+      transparent;
+  }
+
+  .experience .left {
+    left: 0;
+  }
+
+  .experience .right {
+    left: 0;
+  }
+}
+
+/* Responsive design pour mobiles */
+@media screen and (max-width: 480px) {
+  .experience .timeline {
+    margin: 0 10px;
+  }
+
+  .experience .container {
+    padding: 10px 20px;
+    padding-left: 60px;
+  }
+
+  .experience .content .tag {
+    font-size: 1.1rem;
+    padding: 1rem 1rem 0;
+  }
+
+  .experience .content .desc {
+    padding: 0 1rem 1rem;
+  }
+
+  .experience .content .desc h3 {
+    font-size: 1.3rem;
+  }
+
+  .experience .content .desc p {
+    font-size: 1rem;
+  }
+} */
 /* view all button */
 .morebtn {
   display: flex;
