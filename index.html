@@ -1537,40 +1537,7 @@
       }
     </style>
 
-    <script>
-      // Animation d'apparition au scroll
-      const expObserverOptions = {
-        threshold: 0.1,
-        rootMargin: "0px 0px -50px 0px",
-      };
-
-      const expObserver = new IntersectionObserver((entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.style.animationPlayState = "running";
-          }
-        });
-      }, expObserverOptions);
-
-      document.querySelectorAll(".exp-timeline-item").forEach((item) => {
-        expObserver.observe(item);
-      });
-
-      // Effet de parallaxe subtil
-      document.addEventListener("mousemove", (e) => {
-        const expContainers = document.querySelectorAll(".exp-content");
-        const mouseX = e.clientX / window.innerWidth;
-        const mouseY = e.clientY / window.innerHeight;
-
-        expContainers.forEach((container) => {
-          const speed = 2;
-          const x = (mouseX - 0.5) * speed;
-          const y = (mouseY - 0.5) * speed;
-
-          container.style.transform += ` translate3d(${x}px, ${y}px, 0)`;
-        });
-      });
-    </script>
+   
     <!-- experience section ends -->
 
     <!-- contact section starts -->
