@@ -26,8 +26,6 @@ const srtop = ScrollReveal({
 });
 
 /* SCROLL EXPERIENCE */
-srtop.reveal('.experience .timeline',{delay: 400});
-srtop.reveal('.experience .timeline .container',{interval: 400}); 
 
 
 // Start of Tawk.to Live Chat

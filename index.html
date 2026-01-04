@@ -37,7 +37,7 @@
       href="./assets/images/1509H-F1.png"
       type="image/x-png"
     />
-    <title>Portfolio | Prudent Gabriel</title>
+    <title>Portfolio | Prudent Gabrielaaaaa</title>
   </head>
   <body oncontextmenu="return false">
     <!-- pre loader -->
@@ -810,67 +810,116 @@
       }
     </style>
 
+    // Remplacer tout le script de la section skills par ce code optimisé
     <script>
-      // Animation des barres de progression au scroll
-      const observerOptions = {
-        threshold: 0.1,
-        rootMargin: "0px 0px -100px 0px",
-      };
+      document.addEventListener("DOMContentLoaded", function () {
+        // Animation des barres de progression
+        function animateSkillsOnScroll() {
+          const skillsSection = document.querySelector(".skills-section");
+          if (!skillsSection) return;
 
-      const observer = new IntersectionObserver((entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            const skillItems = entry.target.querySelectorAll(".skill-item");
+          const skillItems = skillsSection.querySelectorAll(".skill-item");
+          let animationStarted = false;
+
+          function checkScroll() {
+            const sectionPos = skillsSection.getBoundingClientRect();
+            const windowHeight = window.innerHeight;
+
+            if (sectionPos.top < windowHeight * 0.8 && !animationStarted) {
+              animationStarted = true;
+              animateSkills();
+              window.removeEventListener("scroll", checkScroll);
+            }
+          }
+
+          function animateSkills() {
             skillItems.forEach((item, index) => {
-              setTimeout(() => {
-                const percent = item.dataset.percent;
-                const progressBar = item.querySelector(".skill-progress");
-                const percentValue = item.querySelector(".percent-value");
+              const percent = parseInt(item.dataset.percent);
+              const progressBar = item.querySelector(".skill-progress");
+              const percentValue = item.querySelector(".percent-value");
 
-                // Animation de la barre de progression
+              // Réinitialiser l'animation
+              progressBar.style.transition = "none";
+              progressBar.style.width = "0%";
+              percentValue.textContent = "0";
+
+              // Lancer l'animation avec délai
+              setTimeout(() => {
+                progressBar.style.transition =
+                  "width 1.5s cubic-bezier(0.4, 0, 0.2, 1)";
                 progressBar.style.width = percent + "%";
 
                 // Animation du pourcentage
-                let currentPercent = 0;
-                const increment = percent / 50;
+                let current = 0;
+                const increment = percent / 60; // 60 frames pour l'animation
                 const timer = setInterval(() => {
-                  currentPercent += increment;
-                  if (currentPercent >= percent) {
-                    currentPercent = percent;
+                  current += increment;
+                  if (current >= percent) {
+                    current = percent;
                     clearInterval(timer);
                   }
-                  percentValue.textContent = Math.round(currentPercent);
-                }, 20);
-              }, index * 200);
+                  percentValue.textContent = Math.round(current);
+                }, 1000 / 60); // 60 FPS
+              }, index * 150);
             });
           }
-        });
-      }, observerOptions);
 
-      // Observer la section skills
-      const skillsSection = document.querySelector(".skills-section");
-      if (skillsSection) {
-        observer.observe(skillsSection);
-      }
+          // Vérifier immédiatement si la section est visible
+          checkScroll();
+          window.addEventListener("scroll", checkScroll);
+        }
 
-      // Effet de hover sur les catégories
-      const categories = document.querySelectorAll(".skill-category");
-      categories.forEach((category) => {
-        category.addEventListener("mouseenter", function () {
-          this.style.transform = "translateY(-10px) scale(1.02)";
-        });
+        // Optimisation des effets de hover
+        function optimizeHoverEffects() {
+          const categories = document.querySelectorAll(".skill-category");
 
-        category.addEventListener("mouseleave", function () {
-          this.style.transform = "translateY(0) scale(1)";
-        });
-      });
+          categories.forEach((category) => {
+            let hoverTimeout;
 
-      // Effet de parallaxe sur le background
-      window.addEventListener("scroll", () => {
-        const scrolled = window.pageYOffset;
-        const background = document.querySelector(".skills-background");
-        if (background) {
-          background.style.transform = `translateY(${scrolled * 0.5}px)`;
+            category.addEventListener("mouseenter", function () {
+              clearTimeout(hoverTimeout);
+              this.style.transform = "translateY(-10px)";
+              this.style.transition = "transform 0.3s ease";
+            });
+
+            category.addEventListener("mouseleave", function () {
+              const element = this;
+              hoverTimeout = setTimeout(() => {
+                element.style.transform = "translateY(0)";
+              }, 50);
+            });
+          });
+        }
+
+        // Désactiver l'effet de parallaxe problématique
+        function disableProblematicParallax() {
+          // Supprimer l'effet de parallaxe qui peut causer des problèmes
+          window.removeEventListener("scroll", function () {
+            const scrolled = window.pageYOffset;
+            const background = document.querySelector(".skills-background");
+            if (background) {
+              background.style.transform = `translateY(${scrolled * 0.5}px)`;
+            }
+          });
+        }
+
+        // Initialiser les animations
+        animateSkillsOnScroll();
+        optimizeHoverEffects();
+        disableProblematicParallax();
+
+        // Optimiser les animations pour les mobiles
+        if ("matchMedia" in window) {
+          const prefersReducedMotion = window.matchMedia(
+            "(prefers-reduced-motion: reduce)"
+          );
+
+          if (prefersReducedMotion.matches) {
+            document.querySelectorAll(".skill-progress").forEach((bar) => {
+              bar.style.animation = "none";
+              bar.style.transition = "none";
+            });
+          }
         }
       });
     </script>
@@ -1537,7 +1586,6 @@
       }
     </style>
 
-   
     <!-- experience section ends -->
 
     <!-- contact section starts -->
@@ -1857,5 +1905,108 @@
     <!-- ==== ALL MAJOR JAVASCRIPT CDNS ENDS ==== -->
 
     <script src="./assets/js/script.js"></script>
+
+    <style>
+      /* Correction pour les animations de la timeline */
+      .exp-timeline-item {
+        animation: exp-fade-in-up 0.8s ease-out forwards;
+        animation-fill-mode: both;
+      }
+
+      /* Désactiver les animations lors du redimensionnement */
+      .resize-animation-stopper * {
+        animation: none !important;
+        transition: none !important;
+      }
+
+      /* Optimisation des animations pour mobile */
+      @media (max-width: 768px) {
+        .skill-progress {
+          animation-duration: 1s !important;
+          transition-duration: 1s !important;
+        }
+
+        .exp-timeline-item {
+          animation-duration: 0.5s !important;
+        }
+
+        /* Réduire les animations sur mobile pour la performance */
+        .skill-category:hover {
+          transform: translateY(-5px) !important;
+        }
+      }
+
+      /* Prévenir les animations simultanées */
+      .skill-item {
+        will-change: transform;
+        backface-visibility: hidden;
+        -webkit-backface-visibility: hidden;
+      }
+
+      /* Correction pour les barres de progression */
+      .skill-progress {
+        transform: translateZ(0);
+        -webkit-transform: translateZ(0);
+      }
+    </style>
+
+    <script>
+      // Script d'optimisation globale des animations
+      (function () {
+        "use strict";
+
+        // Détecter le support de la performance
+        const supportsPerformance =
+          window.performance &&
+          window.performance.now &&
+          window.requestAnimationFrame;
+
+        if (!supportsPerformance) {
+          // Désactiver les animations complexes si la performance n'est pas supportée
+          document
+            .querySelectorAll('[class*="animation"], [class*="animate"]')
+            .forEach((el) => {
+              el.style.animation = "none";
+            });
+        }
+
+        // Empêcher l'accumulation d'événements scroll
+        let scrollTimeout;
+        window.addEventListener("scroll", function () {
+          clearTimeout(scrollTimeout);
+          scrollTimeout = setTimeout(() => {
+            // Code à exécuter après l'arrêt du scroll
+          }, 100);
+        });
+
+        // Optimisation pour les mobiles
+        if ("ontouchstart" in window) {
+          // Réduire les animations sur mobile
+          document.documentElement.style.setProperty(
+            "--animation-duration",
+            "0.5s"
+          );
+
+          // Désactiver les animations de hover problématiques
+          const style = document.createElement("style");
+          style.textContent = `
+            @media (hover: none) and (pointer: coarse) {
+                .skill-category:hover,
+                .exp-content:hover {
+                    transform: none !important;
+                }
+            }
+        `;
+          document.head.appendChild(style);
+        }
+
+        // Prévenir les animations lors du chargement
+        document.addEventListener("DOMContentLoaded", function () {
+          setTimeout(() => {
+            document.body.classList.remove("loading");
+          }, 100);
+        });
+      })();
+    </script>
   </body>
 </html>
